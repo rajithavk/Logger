@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="com.romba.logger"
+        version="0.0.1">
+
+  <name>Logger</name>
+  <description>A Cordova plugin that writes files using bufferedWriter. Intended for sensors loging etc..</description>
+
+  <engines>
+    <engine name="cordova" version=">=3.6.0" />
+  </engines>
+
+  <js-module src="www/Logger.js" name="Logger">
+    <clobbers target="Logger" />
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Logger">
+        <param name="android-package" value="com.romba.logger.Logger" />
+      </feature>
+    </config-file>
+    <source-file src="src/android/Logger.java" target-dir="src/com/romba/logger" />
+  </platform>
+</plugin>
