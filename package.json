@@ -1,0 +1,15 @@
+{
+    "version": "0.0.1",
+    "name": "com.romba.logger",
+    "cordova_name": "Logger",
+    "description": "A Cordova plugin that writes files using bufferedWriter. Intended for sensors loging etc..",
+    "platforms": [
+        "android"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.6.0"
+        }
+    ]
+}
