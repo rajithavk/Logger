@@ -21,6 +21,9 @@
         <param name="android-package" value="com.romba.logger.Logger" />
       </feature>
     </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    </config-file>
     <source-file src="src/android/Logger.java" target-dir="src/com/romba/logger" />
   </platform>
 </plugin>
