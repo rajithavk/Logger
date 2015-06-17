@@ -9,7 +9,7 @@ module.exports = {
   },
 
   write : function (data,scb,fcb){
-  	console.log("now writing");
+  	// console.log("now writing");
   	cordova.exec(scb,
   	fcb,
   	"Logger",

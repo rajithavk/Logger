@@ -57,7 +57,7 @@ public class Logger extends CordovaPlugin {
     public void initialize(String filename, CallbackContext callbackContext){
         try {
             this.bufferedWriter = new BufferedWriter(new FileWriter("/sdcard/"+filename,false));
-            this.bufferedWriter.write("x,y");
+            // this.bufferedWriter.write("x,y");
             // this.bufferedWriter.write(content);
             // this.bufferedWriter.close();
             callbackContext.success("File Opened");

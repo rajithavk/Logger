@@ -4,6 +4,7 @@
         version="0.0.1">
 
   <name>Logger</name>
+  <author>Rajitha Karunarathne - rajitha.k@synergentl.com</author>
   <description>A Cordova plugin that writes files using bufferedWriter. Intended for sensors loging etc..</description>
 
   <engines>
