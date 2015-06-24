@@ -14,8 +14,12 @@ module.exports = {
   	fcb,
   	"Logger",
   	"write",
-  	[data]
+  	[data, "D"]
   	);
+  },
+
+  writeMessage : function (data,scb,fcb){
+    cordova.exec(scb,fcb,"Logger","write",[data , "M"]);
   },
 
   close : function (scb,fcb){

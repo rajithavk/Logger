@@ -22,6 +22,10 @@ public class Logger extends CordovaPlugin {
     private BufferedOutputStream bos;
     private ZipOutputStream zos;
 
+    private static FileOutputStream mfos;
+    private BufferedOutputStream mbos;
+    private ZipOutputStream mzos;
+
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("initialize")) {
@@ -52,7 +56,12 @@ public class Logger extends CordovaPlugin {
                     }
                 }
             }
-            cordova.getThreadPool().execute(new threaded(args.getString(0),this.zos,callbackContext));
+
+            if(args.getString(1).equals("M"))
+                cordova.getThreadPool().execute(new threaded(args.getString(0),this.mzos,callbackContext));
+            else
+                cordova.getThreadPool().execute(new threaded(args.getString(0),this.zos,callbackContext));
+
             return true;
         }
         else if(action.equals("close")){
@@ -68,10 +77,15 @@ public class Logger extends CordovaPlugin {
             // this.bufferedWriter.write("x,y");
             // this.bufferedWriter.write(content);
             // this.bufferedWriter.close();
-            this.fos = new FileOutputStream("/sdcard/" + fileName + ".zip");
+            this.fos = new FileOutputStream("/sdcard/ECG_Log_" + fileName + ".zip");
             this.bos = new BufferedOutputStream(fos);
             this.zos = new ZipOutputStream(bos);
             zos.putNextEntry( new ZipEntry(fileName + ".txt"));
+
+            this.mfos = new FileOutputStream("/sdcard/ECG_Messages" + fileName + ".zip");
+            this.mbos = new BufferedOutputStream(mfos);
+            this.mzos = new ZipOutputStream(mbos);
+            mzos.putNextEntry( new ZipEntry("M" + fileName + ".txt"));
 
             callbackContext.success("File Opened");
 
@@ -93,7 +107,13 @@ public class Logger extends CordovaPlugin {
         try{
             // this.bufferedWriter.close();
             zos.closeEntry();
+            zos.finish();
             zos.close();
+
+            mzos.closeEntry();
+            mzos.finish();
+            mzos.close();
+
             callbackContext.success("Closed");
         } catch(IOException e){
             callbackContext.error(e.getMessage());
