@@ -80,7 +80,7 @@ public class Logger extends CordovaPlugin {
             this.fos = new FileOutputStream("/sdcard/ECG_Log_" + fileName + ".zip");
             this.bos = new BufferedOutputStream(fos);
             this.zos = new ZipOutputStream(bos);
-            zos.putNextEntry( new ZipEntry(fileName + ".txt"));
+            zos.putNextEntry( new ZipEntry(fileName + ".csv"));
 
             this.mfos = new FileOutputStream("/sdcard/ECG_Messages" + fileName + ".zip");
             this.mbos = new BufferedOutputStream(mfos);
